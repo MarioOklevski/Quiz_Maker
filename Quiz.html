@@ -4,19 +4,26 @@
     <meta charset="UTF-8">
     <title>Quiz Maker</title>
     <link rel="stylesheet" href="Quiz.css">
-    <script src="Quiz.js"></script>
 </head>
 <body>
 <div id="help"></div>
 <div id="container">
     <img id="Dot" src="Images/Necessary/pngwing.com.png" alt="Image not found">
     <h1><br>Quiz</h1>
-    <div id="Images"></div>
+    <div id="Images">
+        <img class="QuizImage tom" id="Tomatoes" src="Images/Quiz%20Images/Tomato.jpg" alt="No image found">
+        <img class="QuizImage cuc" id="Cucumber" src="Images/Quiz%20Images/Cucumber.jpg" alt="No image found">
+        <img class="QuizImage let" id="Lettuce" src="Images/Quiz%20Images/Lettuce.jpg" alt="No image found">
+        <img class="QuizImage" style="display: none" id="GreatJob" src="Images/Quiz%20Images/fireworks-well-done.gif" alt="No image found">
+    </div>
     <div id="container2">
         <p id="Question" style="font-family: Calibre, SansSerif, sans-serif; font-size: x-large;">What does this image represent?</p><br>
-        <label for="Answer"></label><input type="text" name="Answer" placeholder="Enter your answer..." id="Answer" style="margin-bottom: 2%"><br>
-        <button class="button" id="DoneBtn" style="margin-bottom: 15px">Done</button>
+        <label for="Answer"></label><input autocomplete="off" type="text" name="Answer" placeholder="Enter your answer..." id="Answer" style="margin-bottom: 2%" ><br>
+        <div id="CorrectAnswer"></div>
+        <button class="button" id="DoneBtn" onclick="Done()" style="margin-bottom: 15px">Done</button>
+        <button id="NextBtn" style="display: none">Next</button>
     </div>
 </div>
 </body>
+<script src="Quiz.js"></script>
 </html>
