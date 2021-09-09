@@ -3,24 +3,54 @@ let deleteImage;
 let insert = document.getElementById("Images");
 let i = 0;
 let preBuffer = new Array();
+let whichImage;
+let point = 0;
 
 Images[0] = 'Images/Quiz%20Images/Tomato.jpg';
 Images[1] = 'Images/Quiz%20Images/Cucumber.jpg';
 Images[2] = 'Images/Quiz%20Images/Lettuce.jpg';
-for (let i = 0; i < Images.length; i++){
-   preBuffer[i] = new Image();
-   preBuffer[i].src = Images[i];
+
+let maxpoint = Images.length;
+function GetImage(){
+    for (let i = 0; i < Images.length; i++){
+        preBuffer[i] = new Image();
+        preBuffer[i].src = Images[i];
+    }
+    whichImage = Math.round(Math.random() * (Images.length - 1));
+    showImage();
 }
-let whichImage = Math.round(Math.random() * (Images.length - 1));
+
+$(document).on("keypress", function (e){
+    if(e.which == 13){
+        Done();
+    }
+})
+
+function Score(){
+    let score = document.getElementById("Score");
+    score.innerText = point + "/" + maxpoint;
+    score.setAttribute("style", "font-family: Calibri, sans-serif; color: gray")
+}
+
 function showImage(){
-    insert.innerHTML += "<img id='TheImage' class='QuizImage' src='"+ Images[whichImage] + "' alt='No Image Found'>"
-    console.log("Yes");
-    deleteImage = whichImage;
+    console.log(Images.length);
+    if(Images.length < 1){
+        document.getElementById("GreatJob").removeAttribute("style");
+        document.getElementById("TheImage").setAttribute("style", "display: none");
+        document.getElementById("NextBtn").disabled = true;
+        document.getElementById("DoneBtn").disabled = true;
+    }
+    else{
+        insert.innerHTML += "<img id='TheImage' class='QuizImage' src='"+ Images[whichImage] + "' alt='No Image Found'>"
+        console.log("Yes");
+        deleteImage = Images[whichImage];
+    }
 }
-window.onload = showImage;
 
-
-
+window.onload = function (){
+    GetImage();
+    Score();
+}
 
 function Done(){
     let value = document.getElementById("Answer").value;
@@ -38,6 +68,8 @@ function Done(){
         NextBtn.innerText = "Next";
         NextBtn.removeAttribute("style");
         NextBtn.setAttribute("onclick", "Next()");
+        point++;
+        Score();
     }
     else{
         answer.value = "Wrong!" + '\t' + "The answer was: ";
@@ -58,7 +90,12 @@ function Retry(){
 
 
 function Next(){
-    delete Images[deleteImage];
+    let image = document.getElementById("TheImage");
+    document.getElementById("Images").removeChild(image);
+    Images.splice($.inArray(deleteImage, Images), 1);
+    GetImage();
+    NextGuess();
+    /*delete Images[deleteImage];
     Images.length -= 1;
     if(Images.length == 0){
         document.getElementById("GreatJob").removeAttribute("style");
@@ -75,7 +112,7 @@ function Next(){
         whichImage = Math.round(Math.random() * (Images.length - 1));
         document.getElementById("TheImage").src = Images[whichImage];
         NextGuess();
-    }
+    }*/
 }
 
 function NextGuess(){
@@ -84,4 +121,3 @@ function NextGuess(){
     document.getElementById("DoneBtn").disabled = false;
     document.getElementById("NextBtn").setAttribute("style", "display: none");
 }
-
