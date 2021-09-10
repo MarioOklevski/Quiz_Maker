@@ -1,0 +1,32 @@
+html, body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: url("https://images.pexels.com/photos/129731/pexels-photo-129731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500") no-repeat center;
+    background-size: cover;
+}
+#Dot{
+    margin-top: 10px;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+}
+h1{
+    text-align: center;
+    font-size: xxx-large;
+}
+#help{
+    height: 15px;
+}
+#fileContainer{
+    border: 1px red solid;
+    width: auto;
+}
+#container{
+    background-color: antiquewhite;
+    height: 90%;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    position: relative;
+}

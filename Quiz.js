@@ -11,6 +11,11 @@ Images[1] = 'Images/Quiz%20Images/Cucumber.jpg';
 Images[2] = 'Images/Quiz%20Images/Lettuce.jpg';
 
 let maxpoint = Images.length;
+window.onload = function (){
+    GetImage();
+    Score();
+    $("#NextBtn").hide();
+}
 function GetImage(){
     for (let i = 0; i < Images.length; i++){
         preBuffer[i] = new Image();
@@ -47,10 +52,7 @@ function showImage(){
     }
 }
 
-window.onload = function (){
-    GetImage();
-    Score();
-}
+
 
 function Done(){
     let value = document.getElementById("Answer").value;
@@ -65,21 +67,21 @@ function Done(){
         answer.disabled = true;
         button.disabled = true;
         button.setAttribute("style", "background-color: #4CAF50");
-        NextBtn.innerText = "Next";
-        NextBtn.removeAttribute("style");
+        NextBtn.innerText = "›";
+        $("#NextBtn").show();
         NextBtn.setAttribute("onclick", "Next()");
         point++;
         Score();
     }
     else{
-        answer.value = "Wrong!" + '\t' + "The answer was: ";
+        answer.value = "Wrong! You answered: "+ value;
         let correct = document.getElementById("CorrectAnswer");
-        correct.innerHTML = "<p style='font-family: Calibri, sans-serif'>"+ Image +"</p>"
+        correct.innerHTML = "<p style='font-family: Calibri, sans-serif'>The correct answer was:<br>"+ Image +"</p>"
         answer.disabled = true;
         button.disabled = true;
         button.setAttribute("style", "background-color: firebrick");
-        NextBtn.innerText = "Retry";
-        NextBtn.removeAttribute("style");
+        NextBtn.innerText = "⟳";
+        $("#NextBtn").show();
         NextBtn.setAttribute("onclick", "Retry()");
     }
 }
@@ -95,29 +97,17 @@ function Next(){
     Images.splice($.inArray(deleteImage, Images), 1);
     GetImage();
     NextGuess();
-    /*delete Images[deleteImage];
-    Images.length -= 1;
-    if(Images.length == 0){
-        document.getElementById("GreatJob").removeAttribute("style");
-        document.getElementById("TheImage").setAttribute("style", "display: none");
-
-    }
-    else{
-        i = 0;
-        let preBuffer = new Array();
-        for (let i = 0; i < Images.length; i++){
-            preBuffer[i] = new Image();
-            preBuffer[i].src = Images[i];
-        }
-        whichImage = Math.round(Math.random() * (Images.length - 1));
-        document.getElementById("TheImage").src = Images[whichImage];
-        NextGuess();
-    }*/
 }
 
 function NextGuess(){
     document.getElementById("Answer").value = null;
     document.getElementById("Answer").disabled = false;
     document.getElementById("DoneBtn").disabled = false;
-    document.getElementById("NextBtn").setAttribute("style", "display: none");
+    $("#NextBtn").hide();
 }
+
+$(document).ready(function (){
+    $("#Maker").on("click", function (){
+        $("body").load("Maker.html");
+    })
+})
