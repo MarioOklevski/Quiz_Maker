@@ -5,28 +5,40 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <title>Quiz Maker</title>
     <link rel="stylesheet" href="Quiz.css">
+
 </head>
 <body>
 <div id="help"></div>
 <div id="container">
     <img id="Dot" src="Images/Necessary/pngwing.com.png" alt="Image not found">
-    <div id="Create">
+    <div id="TheQuiz">
+        <div id="Create">
         <p>Create your own quiz</p><button class="button2" id="Maker">Create</button>
+        </div>
+        <h1><br>Quiz</h1>
+        <p id="Score"></p>
+        <div id="Images">
+            <img class="QuizImage tom" id="Tomatoes" src="Images/Quiz%20Images/Tomato.jpg" alt="No image found">
+            <img class="QuizImage cuc" id="Cucumber" src="Images/Quiz%20Images/Cucumber.jpg" alt="No image found">
+            <img class="QuizImage let" id="Lettuce" src="Images/Quiz%20Images/Lettuce.jpg" alt="No image found">
+        </div>
+        <div class="container2">
+            <p id="Question" style="font-family: Calibre, SansSerif, sans-serif; font-size: x-large;">What does this image represent?</p><br>
+            <label for="Answer"></label><input autocomplete="off" type="text" name="Answer" placeholder="Enter your answer..." id="Answer" style="margin-bottom: 2%" ><br>
+            <div id="CorrectAnswer"></div>
+            <button id="DoneBtn" onclick="Done()" style="margin-bottom: 15px">Done</button>
+            <a href="#" class="next" id="NextBtn" style="vertical-align: middle">›</a>
+        </div>
     </div>
-    <h1><br>Quiz</h1>
-    <p id="Score"></p>
-    <div id="Images">
-        <img class="QuizImage tom" id="Tomatoes" src="Images/Quiz%20Images/Tomato.jpg" alt="No image found">
-        <img class="QuizImage cuc" id="Cucumber" src="Images/Quiz%20Images/Cucumber.jpg" alt="No image found">
-        <img class="QuizImage let" id="Lettuce" src="Images/Quiz%20Images/Lettuce.jpg" alt="No image found">
-        <img class="QuizImage" style="display: none" id="GreatJob" src="Images/Quiz%20Images/fireworks-well-done.gif" alt="No image found">
-    </div>
-    <div id="container2">
-        <p id="Question" style="font-family: Calibre, SansSerif, sans-serif; font-size: x-large;">What does this image represent?</p><br>
-        <label for="Answer"></label><input autocomplete="off" type="text" name="Answer" placeholder="Enter your answer..." id="Answer" style="margin-bottom: 2%" ><br>
-        <div id="CorrectAnswer"></div>
-        <button id="DoneBtn" onclick="Done()" style="margin-bottom: 15px">Done</button>
-        <a href="#" class="next" id="NextBtn" style="vertical-align: middle">›</a>
+    <div id="TheMaker">
+        <h1><br>Maker</h1>
+        <div id="container2">
+            <p>Upload your image</p>
+            <p><b style="color: red">Warning!<br>The name of the image will be the answer!<br>Confirm every image!</b></p>
+            <input id="fileContainer" type="file" class="f1">
+            <div id="imgContainer"></div>
+        </div>
+        <button id="Start">Start Quiz</button>
     </div>
 </div>
 </body>
